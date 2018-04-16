@@ -190,6 +190,7 @@ def plot_color_2020(screen, color, primaries, grid):
 pygame.init()
 
 screen = pygame.display.set_mode((1280,720))
+pygame.display.set_caption("Color Spaces")
 clock = pygame.time.Clock()
 
 primaries_709 = [(0.64, 0.33), (0.30, 0.60), (0.15, 0.06)]
@@ -209,8 +210,8 @@ cie_grid = CIEGrid(50, 50, 50, 9)
 sRGB = ColorSpace(itu_defs.ColorSpacesRGB)
 Rec2020 = ColorSpace(itu_defs.ColorSpaceRec2020)
 
-scale_image_x = 384
-scale_image_y = 240
+scale_image_x = 1920 / 4
+scale_image_y = 1200 / 4
 
 ref_image = pygame.image.load(sys.argv[1])
 ref_image = pygame.transform.scale(ref_image, (scale_image_x, scale_image_y))
