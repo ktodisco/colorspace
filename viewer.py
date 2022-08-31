@@ -24,7 +24,7 @@ if __name__ == "__main__":
     waveform.analyze(ref_image)
 
     # Pre-compute all of the xyz coordinates.
-    convert_709_to_XYZ = compute_xyz_conversion(COLORSPACE_SRGB)
+    convert_709_to_XYZ = compute_XYZ_conversion(COLORSPACE_SRGB)
     xyz_plots = []
     for x in range(scale_image_x):
         for y in range(scale_image_y):

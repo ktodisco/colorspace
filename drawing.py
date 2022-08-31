@@ -110,7 +110,7 @@ def plot_color_XYZ(screen, point_color, color_xyz, grid):
         (int(grid.x + (grid.step * x_coord * 10)), int(grid.y + (grid.intervals * grid.step) - (grid.step * y_coord * 10))), 2)
     
 def plot_color(screen, color, colorspace, grid):
-    space_to_xyz = compute_xyz_conversion(colorspace)
+    space_to_xyz = compute_XYZ_conversion(colorspace)
     color_XYZ = numpy.matmul(space_to_xyz, numpy.asarray(color))
     plot_color_XYZ(screen, color, color_xyz, grid)
     

@@ -15,7 +15,7 @@ def xyY_to_XYZ(color):
 # Computes a matrix the converts a color from the color space provided
 # into XYZ space.
 # space: A Colorspace object.
-def compute_xyz_conversion(space):
+def compute_XYZ_conversion(space):
     # Extract the primaries, for readability.
     x_r, y_r, _ = space.primaries[0]
     x_g, y_g, _ = space.primaries[1]
@@ -54,6 +54,10 @@ def compute_xyz_conversion(space):
     ])
     
     return result
+    
+def compute_LMS_conversion(space, XYZ_to_LMS):
+    space_to_XYZ = compute_XYZ_conversion(space)
+    return numpy.matmul(XYZ_to_LMS, space_to_XYZ)
 
 # http://vision.psychol.cam.ac.uk/jdmollon/papers/colourmaps.pdf
 # Computes the matrices that daltonize colors from the color space provided.
@@ -117,8 +121,8 @@ def compute_daltonization_transforms(space):
 # space2: A Colorspace object to convert to.
 def compute_colorspace_conversion(space1, space2):
     # Calculate the conversion matrices for both spaces into XYZ space.
-    space1_to_xyz = compute_xyz_conversion(space1)
-    space2_to_xyz = compute_xyz_conversion(space2)
+    space1_to_xyz = compute_XYZ_conversion(space1)
+    space2_to_xyz = compute_XYZ_conversion(space2)
     
     # Calcuate the conversion matrix from XYZ to the second space.
     xyz_to_space2 = numpy.linalg.inv(space2_to_xyz)
