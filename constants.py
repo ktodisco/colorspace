@@ -12,7 +12,7 @@ COLORSPACE_HDR  = ColorSpace(PRIMARIES_BT2020, WHITEPOINT_D65)
 
 FUNDAMENTALS_SMITH_POKORNY = numpy.array([  \
     [  0.15514,  0.54312, -0.03286 ],       \
-    [ -0.15514,  0.45684,  0.03286 ],       \    
+    [ -0.15514,  0.45684,  0.03286 ],       \
     [  0.00000,  0.00000,  0.00801 ]])
 
 FUNDAMENTALS_HPE_D65 = numpy.array([        \
