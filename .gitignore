@@ -47,4 +47,5 @@ Temporary Items
 .apdisk
 
 # Project-specific.
+build/
 *.pyc
