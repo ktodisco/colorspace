@@ -1,0 +1,4 @@
+- c++ library for color space mathematics
+- unit tests for c++ library
+- python wrappers for the library
+- demo program in PyQt to perform arbitary conversions

@@ -12,7 +12,7 @@ def xyY_to_XYZ(color):
     return XYZ(X, Y, Z)
 
 # http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
-# Computes a matrix the converts a color from the color space provided
+# Computes a matrix that converts a color from the color space provided
 # into XYZ space.
 # space: A Colorspace object.
 def compute_XYZ_conversion(space):
@@ -130,3 +130,11 @@ def compute_colorspace_conversion(space1, space2):
     # Use XYZ as the intermediary space to derive a single conversion matrix.
     return numpy.matmul(xyz_to_space2, space1_to_xyz)
     
+if __name__ == "__main__":
+    from constants import *
+    RGB_to_XYZ = compute_XYZ_conversion(COLORSPACE_SRGB)
+    print(RGB_to_XYZ)
+    print("")
+    print(compute_colorspace_conversion(COLORSPACE_SRGB, COLORSPACE_HDR))
+    print("")
+    print(compute_colorspace_conversion(COLORSPACE_HDR, COLORSPACE_SRGB))
