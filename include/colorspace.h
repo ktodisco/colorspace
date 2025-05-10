@@ -8,10 +8,10 @@
 #ifndef _COLORSPACE_H_
 #define _COLORSPACE_H_
 
-typedef struct _color_matrix_t
+typedef struct _color_mat_t
 {
 	float data[9];
-} color_matrix_t;
+} color_mat_t;
 
 typedef struct _color_vec_t
 {
@@ -77,7 +77,7 @@ typedef struct _colorspace_t
 ** Inverts the 3x3 color matrix.
 ** @param m The matrix to invert.
 */
-color_matrix_t color_matrix_invert(const color_matrix_t* m);
+color_mat_t color_mat_invert(const color_mat_t* m);
 
 /*
 ** Multiplies two matrices.
@@ -87,14 +87,14 @@ color_matrix_t color_matrix_invert(const color_matrix_t* m);
 ** @param a First matrix to multiply.
 ** @param b Second matrix to multiply.
 */
-color_matrix_t color_matrix_multiply(const color_matrix_t* a, const color_matrix_t* b);
+color_mat_t color_mat_multiply(const color_mat_t* a, const color_mat_t* b);
 
 /*
 ** Transform a vector by a matrix.
 ** @param mat The matrix to transform the vector with.
 ** @param vec The vector to transform.
 */
-color_vec_t convert_color_vec(const color_matrix_t* mat, const color_vec_t* vec); 
+color_vec_t convert_color_vec(const color_mat_t* mat, const color_vec_t* vec); 
 
 /*
 ** Convert a CIE xyY triplet into a CIE XYZ color representation.
@@ -107,7 +107,7 @@ cie_xyz_t convert_xyy_to_xyz(const cie_xyy_t* xyy);
 ** Based on: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
 ** @param colorspace A Colorspace object.
 */
-color_matrix_t make_xyz_conversion(const colorspace_t* colorspace);
+color_mat_t make_xyz_conversion(const colorspace_t* colorspace);
 
 /*
 ** Constructs a matrix which can be used to convert from one colorspace
@@ -117,7 +117,7 @@ color_matrix_t make_xyz_conversion(const colorspace_t* colorspace);
 ** colorspace_a A Colorspace object to convert from.
 ** colorspace_b A Colorspace object to convert to.
 */
-color_matrix_t make_colorspace_conversion(const colorspace_t* colorspace_a, const colorspace_t* colorspace_b);
+color_mat_t make_colorspace_conversion(const colorspace_t* colorspace_a, const colorspace_t* colorspace_b);
 
 /*
 ** Constructs a matrix for a given colorspace which can be used to emulate protanope
@@ -126,7 +126,7 @@ color_matrix_t make_colorspace_conversion(const colorspace_t* colorspace_a, cons
 ** colors as seen by someone with protanopia.
 ** @param colorspace The color space for which to compute the emulation matrix.
 */
-color_matrix_t make_protanopia_transform(const colorspace_t* colorspace);
+color_mat_t make_protanopia_transform(const colorspace_t* colorspace);
 
 /*
 ** Constructs a matrix for a given colorspace which can be used to emulate deuteranope
@@ -135,7 +135,7 @@ color_matrix_t make_protanopia_transform(const colorspace_t* colorspace);
 ** colors as seen by someone with deuteranopia.
 ** @param colorspace The color space for which to compute the emulation matrix.
 */
-color_matrix_t make_deuteranopia_transform(const colorspace_t* colorspace);
+color_mat_t make_deuteranopia_transform(const colorspace_t* colorspace);
 
 /*
 ** Constructs a matrix for a given colorspace which can be used to emulate tritanope
@@ -144,7 +144,7 @@ color_matrix_t make_deuteranopia_transform(const colorspace_t* colorspace);
 ** colors as seen by someone with tritanopia.
 ** @param colorspace The color space for which to compute the emulation matrix.
 */
-color_matrix_t make_tritanopia_transform(const colorspace_t* colorspace);
+color_mat_t make_tritanopia_transform(const colorspace_t* colorspace);
 
 /*
 ** Common color spaces and components.
@@ -184,8 +184,8 @@ extern cie_xyy_t WHITEPOINT_D65;
 extern colorspace_t COLORSPACE_SRGB;
 extern colorspace_t COLORSPACE_HDR10;
 
-extern color_matrix_t FUNDAMENTALS_SMITH_POKORNY;
-extern color_matrix_t FUNDAMENTALS_HPE_D65;
-extern color_matrix_t FUNDAMENTALS_STOCKMAN_SHARPE;
+extern color_mat_t FUNDAMENTALS_SMITH_POKORNY;
+extern color_mat_t FUNDAMENTALS_HPE_D65;
+extern color_mat_t FUNDAMENTALS_STOCKMAN_SHARPE;
 
 #endif

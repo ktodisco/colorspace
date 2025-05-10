@@ -41,7 +41,6 @@ def compute_XYZ_conversion(space):
     ])
     
     rgb_matrix_inverse = numpy.linalg.inv(rgb_matrix)
-    test = numpy.linalg.matmul(rgb_matrix, rgb_matrix_inverse)
     
     white_point_XYZ = xyY_to_XYZ(space.white_point)
     
@@ -133,7 +132,7 @@ def compute_colorspace_conversion(space1, space2):
     
 if __name__ == "__main__":
     from constants import *
-    RGB_to_XYZ = compute_XYZ_conversion(COLORSPACE_SRGB)
+    RGB_to_XYZ = compute_XYZ_conversion(COLORSPACE_HDR)
     print(RGB_to_XYZ)
     print("")
     print(compute_colorspace_conversion(COLORSPACE_SRGB, COLORSPACE_HDR))
@@ -141,7 +140,7 @@ if __name__ == "__main__":
     print(compute_colorspace_conversion(COLORSPACE_HDR, COLORSPACE_SRGB))
     print("")
     
-    protanope, deuteranope, tritanope = compute_daltonization_transforms(COLORSPACE_SRGB)
+    protanope, deuteranope, tritanope = compute_daltonization_transforms(COLORSPACE_HDR)
     print(protanope)
     print("")
     print(deuteranope)
@@ -149,12 +148,4 @@ if __name__ == "__main__":
     print(tritanope)
     print("")
     
-    test_matrix = numpy.array( \
-        [ \
-            [ 1.0, 4.0, 7.0 ],
-            [ 2.0, 5.0, 2.0 ],
-            [ 7.0, 4.0, 1.0 ]
-        ])
-    test_inv = numpy.linalg.inv(test_matrix)
-    print(test_inv)
-    print("")
+    print(xyY_to_XYZ(xyY(0.15, 0.06, 0.0722)).data)
